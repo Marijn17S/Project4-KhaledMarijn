@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace Project4_KhaledMarijn.Classes
 {
-    public class OrderStatus
+    public enum OrderStatus
     {
-
+        Wachtrij,
+        Voorbereiding,
+        Bakken,
+        Onderweg,
     }
 }

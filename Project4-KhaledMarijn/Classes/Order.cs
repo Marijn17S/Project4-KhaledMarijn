@@ -8,6 +8,12 @@ namespace Project4_KhaledMarijn.Classes
 {
     public class Order
     {
-        public DateTime OrderDate { get; set; }
+        public int Id { get; set; }
+
+        public DateTime Date { get; set; }
+
+        public Customer? User { get; set; }
+
+        /*public OrderStatus Status { get; set; }*/
     }
 }
