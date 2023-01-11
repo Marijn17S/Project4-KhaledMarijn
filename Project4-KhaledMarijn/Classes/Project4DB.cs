@@ -35,7 +35,8 @@ namespace Project4_KhaledMarijn.Classes
                         {
                             PizzaID = (int)reader["pizzaID"],
                             Name = (string)reader["name"],
-                            Size = (string)reader["size"],
+                            Price = (decimal)reader["price"],
+                            PriceLabel = $" €{(decimal)reader["price"]}",
 
 
                         }; pizzas.Add(pizza);
