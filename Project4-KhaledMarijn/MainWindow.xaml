@@ -6,7 +6,10 @@
         xmlns:local="clr-namespace:Project4_KhaledMarijn"
         mc:Ignorable="d"
         Title="Stonk's Pizza" Height="600" Width="1000">
-    <Grid Background="Black" >
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/images/Background.png" Stretch="UniformToFill"/>
+        </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="30*"/>

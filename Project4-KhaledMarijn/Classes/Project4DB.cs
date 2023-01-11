@@ -11,6 +11,6 @@ namespace Project4_KhaledMarijn.Classes
     {
     
         private string connString =
-        ConfigurationManager.ConnectionStrings["Project4"].ConnectionString;
+        ConfigurationManager.ConnectionStrings["Conn"].ConnectionString;
     }
 }
