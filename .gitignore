@@ -8,6 +8,8 @@ bld/
 [Bb]in/
 [Oo]bj/
 
+App.config
+
 *.tmp
 
 *.log
