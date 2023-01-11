@@ -1,8 +1,10 @@
-﻿using Project4_KhaledMarijn.Classes;
+﻿using MySqlX.XDevAPI.Common;
+using Project4_KhaledMarijn.Classes;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -36,22 +38,25 @@ namespace Project4_KhaledMarijn
         }
         #endregion
 
+        #region fields
+        private readonly Project4DB db = new Project4DB();
+        private readonly string serviceDeskMessage = "\n\nSomething went wrong";
+        #endregion
+
         private ObservableCollection<Pizza> pizzas = new();
         public ObservableCollection<Pizza> Pizzas
         {
             get { return pizzas; }
             set { pizzas = value; OnPropertyChanged(); }
         }
-        public static string serviceDeskMessage = "Something went wrong";
-        private Project4DB db = new Project4DB();
 
         private void PopulatePizzas()
         {
             pizzas.Clear();
-            bool result = db.GetPizzas(pizzas);
-            if (!result)
+            bool dbResult = db.GetPizzas(pizzas);
+            if (!dbResult)
             {
-                MessageBox.Show(serviceDeskMessage);
+                MessageBox.Show(dbResult + serviceDeskMessage);
             }
         }
     }
