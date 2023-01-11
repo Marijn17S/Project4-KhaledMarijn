@@ -35,11 +35,18 @@ namespace Project4_KhaledMarijn.Classes
         }
 
 
-        private string size;
-        public string Size
+        private decimal price;
+        public decimal Price
         {
-            get { return size; }
-            set { size = value; OnPropertyChanged(); }
+            get { return price; }
+            set { price = value; OnPropertyChanged(); }
+        }
+
+        private string priceLabel;
+        public string PriceLabel
+        {
+            get { return priceLabel; }
+            set { priceLabel = value; OnPropertyChanged(); }
         }
     }
     }
