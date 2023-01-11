@@ -88,7 +88,7 @@
                         <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" Text="Pizza" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <ComboBox Grid.Column="1" x:Name="gerechtCombo" MaxHeight="30" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                    <ComboBox Grid.Column="1" MaxHeight="30" ScrollViewer.VerticalScrollBarVisibility="Visible">
                         <ComboBoxItem Content="Calzone"/>
                         <ComboBoxItem Content="Diavola"/>
                         <ComboBoxItem Content="Frutedimare"/>
@@ -124,13 +124,14 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <TextBlock Text="Formaat" Visibility="Visible" Grid.Column="0" HorizontalAlignment="Center"/>
-                    <RadioButton GroupName="pizzaGrootte" x:Name="gerechtRadio25" Visibility="Visible" Content="25 cm" Grid.Column="1" Grid.Row="0"/>
-                    <RadioButton GroupName="pizzaGrootte" x:Name="gerechtRadio35" Visibility="Visible" Content="35 cm" Grid.Column="1" Grid.Row="1"/>
+                    <RadioButton GroupName="pizzaGrootte" Visibility="Visible" Content="Small" Grid.Column="1" Grid.Row="0"/>
+                    <RadioButton GroupName="pizzaGrootte" Visibility="Visible" Content="Medium" Grid.Column="1" Grid.Row="1"/>
+                    <RadioButton GroupName="pizzaGrootte" Visibility="Visible" Content="Large" Grid.Column="1" Grid.Row="2"/>
                 </Grid>
 
                 <StackPanel Orientation="Horizontal" Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Bottom">
                     <TextBlock Text="Totaalbedrag: " VerticalAlignment="Center"/>
-                    <TextBlock x:Name="gerechtTotaal" Text="€0,00" VerticalAlignment="Center"/>
+                    <TextBlock Text="€0,00" VerticalAlignment="Center"/>
                 </StackPanel>
 
                 <Grid Grid.Row="8">
