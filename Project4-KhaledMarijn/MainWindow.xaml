@@ -50,7 +50,7 @@
                         <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" Text="Firstname" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <TextBox Grid.Column="1" MinWidth="100" MaxHeight="30"/>
+                    <TextBox DataContext="{Binding NewOrder}" Text="{Binding Firstname}" Grid.Column="1" MinWidth="100" MaxHeight="30"/>
                 </Grid>
 
                 <Grid Grid.Row="1">
@@ -59,7 +59,7 @@
                         <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" Text="Lastname" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <TextBox Grid.Column="1" MinWidth="100" MaxHeight="30"/>
+                    <TextBox Grid.Column="1" DataContext="{Binding NewOrder}" Text="{Binding Lastname}" MinWidth="100" MaxHeight="30"/>
                 </Grid>
 
                 <Grid Grid.Row="2">
@@ -68,7 +68,7 @@
                         <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" Text="Address" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <TextBox Grid.Column="1" MinWidth="100" MaxHeight="30"/>
+                    <TextBox Grid.Column="1" MinWidth="100" MaxHeight="30" DataContext="{Binding NewOrder}" Text="{Binding Address}"/>
                 </Grid>
 
                 <Grid Grid.Row="3">
@@ -78,8 +78,8 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" Text="Postal Code - City" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <TextBox Grid.Column="1" MaxHeight="30" Margin="0 0 2 0"/>
-                    <TextBox Grid.Column="2" MaxHeight="30" Margin="2 0 0 0"/>
+                    <TextBox Grid.Column="1" MaxHeight="30" Margin="0 0 2 0" DataContext="{Binding NewOrder}" Text="{Binding PostalCode}"/>
+                    <TextBox Grid.Column="2" MaxHeight="30" Margin="2 0 0 0" DataContext="{Binding NewOrder}" Text="{Binding City}"/>
                 </Grid>
 
                 <Grid Grid.Row="4">
@@ -143,7 +143,7 @@
                 </StackPanel>
 
                 <Grid Grid.Row="8">
-                    <Button Content="Add to order" MaxHeight="35" MaxWidth="200"/>
+                    <Button Click="Add_order" Content="Add to order" MaxHeight="35" MaxWidth="200"/>
                 </Grid>
             </Grid>
 
@@ -171,7 +171,7 @@
                     <ListBox Background="White" Grid.Row="1" Grid.Column="1" d:ItemsSource="{d:SampleData ItemCount=5}"/>
                 </Grid>
                 <TextBlock TextAlignment="Center" Text="Total amount €0,00" Grid.Row="2"/>
-                <Button Content="Continue to payment" MaxHeight="35" MaxWidth="200" Grid.Row="3"/>
+                <Button Click="Confirm_payment" Content="Continue to payment" MaxHeight="35" MaxWidth="200" Grid.Row="3"/>
             </Grid>
         </Grid>
     </Grid>

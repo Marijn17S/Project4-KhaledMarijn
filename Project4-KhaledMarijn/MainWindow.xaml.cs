@@ -50,6 +50,13 @@ namespace Project4_KhaledMarijn
             set { pizzas = value; OnPropertyChanged(); }
         }
 
+        private ObservableCollection<Order> newOrder = new();
+        public ObservableCollection<Order> NewOrder
+        {
+            get { return newOrder; }
+            set { newOrder = value; OnPropertyChanged(); }
+        }
+
         private void PopulatePizzas()
         {
             pizzas.Clear();
@@ -58,6 +65,20 @@ namespace Project4_KhaledMarijn
             {
                 MessageBox.Show(dbResult + serviceDeskMessage);
             }
+        }
+
+        private void Add_order(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(NewOrder.))
+            {
+                MessageBox.Show("Type your firstname");
+                return;
+            }
+        }
+
+        private void Confirm_payment(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
