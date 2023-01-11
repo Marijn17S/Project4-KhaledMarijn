@@ -18,6 +18,7 @@ namespace Project4_KhaledMarijn.Classes
         }
         #endregion
 
+        public string Id { get; set; }
 
         private string firstName;
         public string FirstName
