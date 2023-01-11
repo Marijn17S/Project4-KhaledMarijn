@@ -6,13 +6,10 @@ using System.Threading.Tasks;
 
 namespace Project4_KhaledMarijn.Classes
 {
-   internal class PizzaSize
+    internal class Pizza
     {
-        internal enum PizzaSizeEnum
-        {
-            Small,
-            Medium,
-            Large,
-        }
+        public int PizzaId { get; set; }
+        public string Name { get; set; }
+        public string Size { get; set; }
     }
 }

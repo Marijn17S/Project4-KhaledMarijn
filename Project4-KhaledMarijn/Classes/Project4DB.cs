@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -12,5 +13,45 @@ namespace Project4_KhaledMarijn.Classes
     
         private string connString =
         ConfigurationManager.ConnectionStrings["Conn"].ConnectionString;
+
+
+        public string GetPizzas(ICollection<Pizza> pizzas)
+        {
+            if (pizzas == null)
+            {
+                throw new ArgumentException("Ongeldig argument bij gebruik van GetPizzas");
+            }
+
+            using (MySqlConnection conn = new(connString))
+            {
+                try
+                {
+                    conn.Open(); MySqlCommand sql = conn.CreateCommand();
+                    sql.CommandText = @"SELECT * FROM `pizzas` WHERE 1";
+                    MySqlDataReader reader = sql.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Pizza pizza = new Pizza()
+                        {
+                            PizzaId = (int)reader["pizzaID"],
+                            Name = (string)reader["name"],
+
+                        }; pizzas.Add(pizza);
+
+
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    Console.Error.WriteLine(nameof(GetPizzas)); Console.Error.WriteLine(e.Message);
+                }
+            }
+            return "OK";
+        }
     }
+
+
+
+
 }
