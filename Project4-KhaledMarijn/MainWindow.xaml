@@ -49,7 +49,7 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" Text="Firstname" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Column="0" Text="Firstname" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     <TextBox Grid.Column="1" MinWidth="100" MaxHeight="30"/>
                 </Grid>
 
@@ -58,7 +58,7 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" Text="Lastname" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Column="0" Text="Lastname" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     <TextBox Grid.Column="1" MinWidth="100" MaxHeight="30"/>
                 </Grid>
 
@@ -67,7 +67,7 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" Text="Adres" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Column="0" Text="Adres" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     <TextBox Grid.Column="1" MinWidth="100" MaxHeight="30"/>
                 </Grid>
 
@@ -77,7 +77,7 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" Text="Postcode - Plaats" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Column="0" Text="Postcode - Plaats" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     <TextBox Grid.Column="1" MaxHeight="30" Margin="0 0 2 0"/>
                     <TextBox Grid.Column="2" MaxHeight="30" Margin="2 0 0 0"/>
                 </Grid>
@@ -87,7 +87,7 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" Text="Pizza" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Column="0" Text="Pizza" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     <ComboBox Grid.Column="1" x:Name="gerechtCombo" MaxHeight="30" ScrollViewer.VerticalScrollBarVisibility="Visible">
                         <ComboBoxItem Content="Calzone"/>
                         <ComboBoxItem Content="Diavola"/>
@@ -103,41 +103,67 @@
                     </ComboBox>
                 </Grid>
 
-                <Grid Grid.Row="4">
-                    <TextBlock Text="Formaat" Visibility="Hidden"/>
-                    <RadioButton GroupName="pizzaGrootte" x:Name="gerechtRadio25" Visibility="Hidden" Content="25 cm"/>
-                    <RadioButton GroupName="pizzaGrootte" x:Name="gerechtRadio35" Visibility="Hidden" Content="35 cm"/>
-                </Grid>
-
                 <Grid Grid.Row="5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" Text="Aantal (Max 99):" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Column="0" Text="Aantal (Max 99):" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     <TextBox Grid.Column="1" HorizontalAlignment="Left" MinWidth="35" Text="0" VerticalAlignment="Center" HorizontalContentAlignment="Center"/>
                 </Grid>
 
-                <StackPanel Orientation="Horizontal" Grid.Row="6">
+                <Grid Grid.Row="6">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Formaat" Visibility="Visible" Grid.Column="0" HorizontalAlignment="Center"/>
+                    <RadioButton GroupName="pizzaGrootte" x:Name="gerechtRadio25" Visibility="Visible" Content="25 cm" Grid.Column="1" Grid.Row="0"/>
+                    <RadioButton GroupName="pizzaGrootte" x:Name="gerechtRadio35" Visibility="Visible" Content="35 cm" Grid.Column="1" Grid.Row="1"/>
+                </Grid>
+
+                <StackPanel Orientation="Horizontal" Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Bottom">
                     <TextBlock Text="Totaalbedrag: " VerticalAlignment="Center"/>
                     <TextBlock x:Name="gerechtTotaal" Text="€0,00" VerticalAlignment="Center"/>
                 </StackPanel>
 
-                <Grid Grid.Row="7">
+                <Grid Grid.Row="8">
                     <Button Content="Toevoegen" MaxHeight="35" MaxWidth="200"/>
                 </Grid>
             </Grid>
 
             <!-- Besteloverzicht-->
             <Grid Grid.Row="0" Grid.RowSpan="2" Grid.Column="1">
-
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="15*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="15*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Overzicht" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+                    <ListBox Background="White" Grid.Row="1" Grid.Column="1" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+                </Grid>
+                <TextBlock TextAlignment="Center" Text="Totaal €0,00" Grid.Row="2"/>
+                <Button Content="Betalen" MaxHeight="35" MaxWidth="200" Grid.Row="3"/>
             </Grid>
         </Grid>
-        <!--<StackPanel Width="220" HorizontalAlignment="Right" Margin="0,20,20,20">
-            <TextBlock Margin="5,0,0,0" Text="Overzicht"/>
-            <ListBox x:Name="Overzicht" Margin="0,5,0,0" Background="White" Height="230"/>
-            <TextBlock x:Name="totaalPrijsOverzicht" Margin="0,5,0,0" TextAlignment="Right" Text="Totaal €0,00"/>
-            <Button Margin="0,5,0,0" Content="Betalen"/>
-        </StackPanel>-->
     </Grid>
 </Window>
