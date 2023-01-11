@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Project4_KhaledMarijn.Classes
 {
-    internal class Order
+    public class Order
     {
         public DateTime OrderDate { get; set; }
     }

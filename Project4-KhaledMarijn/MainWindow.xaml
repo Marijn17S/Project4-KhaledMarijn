@@ -88,8 +88,13 @@
                         <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" Text="Pizza" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <ComboBox Grid.Column="1" MaxHeight="30" ScrollViewer.VerticalScrollBarVisibility="Visible">
-                        <ComboBoxItem Content="Calzone"/>
+                    <ComboBox x:Name="cmb1" ItemsSource="{Binding Pizzas}" Grid.Column="1" MaxHeight="30" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                        <!--<ComboBoxItem Content="Calzone"/>
                         <ComboBoxItem Content="Diavola"/>
                         <ComboBoxItem Content="Frutedimare"/>
                         <ComboBoxItem Content="Funghi"/>
@@ -99,7 +104,7 @@
                         <ComboBoxItem Content="Peperone"/>
                         <ComboBoxItem Content="Prosciutto"/>
                         <ComboBoxItem Content="Tonno"/>
-                        <ComboBoxItem Content="Quattrostagioni"/>
+                        <ComboBoxItem Content="Quattrostagioni"/>-->
                     </ComboBox>
                 </Grid>
 

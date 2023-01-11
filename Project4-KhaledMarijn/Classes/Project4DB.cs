@@ -15,7 +15,7 @@ namespace Project4_KhaledMarijn.Classes
         ConfigurationManager.ConnectionStrings["Conn"].ConnectionString;
 
 
-        public string GetPizzas(ICollection<Pizza> pizzas)
+        public bool GetPizzas(ICollection<Pizza> pizzas)
         {
             if (pizzas == null)
             {
@@ -33,8 +33,10 @@ namespace Project4_KhaledMarijn.Classes
                     {
                         Pizza pizza = new Pizza()
                         {
-                            PizzaId = (int)reader["pizzaID"],
+                            PizzaID = (int)reader["pizzaID"],
                             Name = (string)reader["name"],
+                            Size = (string)reader["size"],
+
 
                         }; pizzas.Add(pizza);
 
@@ -47,7 +49,7 @@ namespace Project4_KhaledMarijn.Classes
                     Console.Error.WriteLine(nameof(GetPizzas)); Console.Error.WriteLine(e.Message);
                 }
             }
-            return "OK";
+            return true;
         }
     }
 

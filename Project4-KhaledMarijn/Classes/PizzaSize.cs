@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Project4_KhaledMarijn.Classes
 {
-   internal class PizzaSize
+    public class PizzaSize
     {
         internal enum PizzaSizeEnum
         {
