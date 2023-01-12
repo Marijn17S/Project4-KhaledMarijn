@@ -19,17 +19,6 @@ namespace Project4_KhaledMarijn.Classes
         #endregion
 
 
-        public int OrderId { get; set; }
-        public DateTime OrderDate { get; set; }
-
-        private string firstName;
-        public string FirstName
-        {
-            get { return firstName; }
-            set { firstName = value; OnPropertyChanged(); }
-        }
-
-        /*        private Customer user { get; set; }
-        */
+       
     }
 }
