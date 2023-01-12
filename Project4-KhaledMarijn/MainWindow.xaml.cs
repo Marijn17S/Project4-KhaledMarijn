@@ -43,6 +43,7 @@ namespace Project4_KhaledMarijn
         private readonly string serviceDeskMessage = "\n\nSomething went wrong";
         #endregion
 
+        #region Properties
         private ObservableCollection<Pizza> pizzas = new();
         public ObservableCollection<Pizza> Pizzas
         {
@@ -50,32 +51,87 @@ namespace Project4_KhaledMarijn
             set { pizzas = value; OnPropertyChanged(); }
         }
 
-      /*  private ObservableCollection<Order> newOrder = new();
-        public ObservableCollection<Order> NewOrder
+        private ObservableCollection<Order> orders = new();
+        public ObservableCollection<Order> Orders
+        {
+            get { return orders; }
+            set { orders = value; OnPropertyChanged(); }
+        }
+
+        private Order? newOrder;
+        public Order? NewOrder
         {
             get { return newOrder; }
             set { newOrder = value; OnPropertyChanged(); }
         }
-*/
 
-       
+        private Customer? newOrderUser;
+        public Customer? NewOrderUser
+        {
+            get { return newOrderUser; }
+            set { newOrderUser = value; OnPropertyChanged(); }
+        }
+
+        private Order? selectedOrder;
+        public Order? SelectedOrder
+        {
+            get { return selectedOrder; }
+            set { selectedOrder = value; OnPropertyChanged(); }
+        }
+        #endregion
 
         private void PopulatePizzas()
         {
-            pizzas.Clear();
-            bool dbResult = db.GetPizzas(pizzas);
+            Pizzas.Clear();
+            bool dbResult = db.GetPizzas(Pizzas);
             if (!dbResult)
             {
                 MessageBox.Show(dbResult + serviceDeskMessage);
             }
         }
 
-        private void Add_order(object sender, RoutedEventArgs e)
+        private void PopulateOrders()
         {
-           
+            Orders.Clear();
+            bool dbResult = db.GetOrders(Orders);
+            if (!dbResult)
+            {
+                MessageBox.Show(dbResult + serviceDeskMessage);
+            }
         }
 
-        private void Confirm_payment(object sender, RoutedEventArgs e)
+        private void AddOrder(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(NewOrderUser?.FirstName))
+            {
+                MessageBox.Show("Enter a valid firstname!");
+                return;
+            }
+            if (string.IsNullOrEmpty(NewOrderUser?.LastName))
+            {
+                MessageBox.Show("Enter a valid lastname!");
+                return;
+            }
+            if (string.IsNullOrEmpty(NewOrderUser?.Address))
+            {
+                MessageBox.Show("Enter a valid address!");
+                return;
+            }
+            if (string.IsNullOrEmpty(NewOrderUser?.PostalCode) /* && Regex match 4 cijfers 2 letters postcode*/)
+            {
+                MessageBox.Show("Enter a valid postal code!");
+                return;
+            }
+
+            bool result = NewOrder != null && db.CreateOrder(NewOrder);
+            if (!result)
+            {
+                NewOrder = new();
+                PopulateOrders();
+            }
+        }
+
+        private void ConfirmPayment(object sender, RoutedEventArgs e)
         {
 
         }

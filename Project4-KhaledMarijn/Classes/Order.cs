@@ -18,7 +18,18 @@ namespace Project4_KhaledMarijn.Classes
         }
         #endregion
 
+        public int Id { get; set; }
+
+        public DateTime Date { get; set; }
+
+        public Customer? User { get; set; }
+
+        public OrderStatus Status { get; set; }
+
 
        
     }
 }
+
+
+   
