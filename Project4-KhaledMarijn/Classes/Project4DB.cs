@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Project4_KhaledMarijn.Classes
 {
-    internal class Project4DB
+    public class Project4DB
     {
     
         private string connString =
