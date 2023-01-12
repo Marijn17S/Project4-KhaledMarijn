@@ -50,11 +50,24 @@ namespace Project4_KhaledMarijn
             set { pizzas = value; OnPropertyChanged(); }
         }
 
-        private ObservableCollection<Order> newOrder = new();
+      /*  private ObservableCollection<Order> newOrder = new();
         public ObservableCollection<Order> NewOrder
         {
             get { return newOrder; }
             set { newOrder = value; OnPropertyChanged(); }
+        }
+*/
+
+        private Order newOrder = new();
+        public Order NewOrder
+        {
+            get { return newOrder; }
+            set
+            {
+                newOrder = value;
+                OnPropertyChanged();
+                NewOrder = null;
+            }
         }
 
         private void PopulatePizzas()
@@ -69,7 +82,7 @@ namespace Project4_KhaledMarijn
 
         private void Add_order(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(NewOrder.))
+            if (string.IsNullOrEmpty(NewOrder.FirstName))
             {
                 MessageBox.Show("Type your firstname");
                 return;
