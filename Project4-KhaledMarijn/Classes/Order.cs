@@ -25,8 +25,6 @@ namespace Project4_KhaledMarijn.Classes
 
         public int UserId { get; set; }
 
-        public Customer User { get; set; }
-
         public OrderStatus Status { get; set; }
     }
 }
