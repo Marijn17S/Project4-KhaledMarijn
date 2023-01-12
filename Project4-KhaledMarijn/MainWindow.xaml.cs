@@ -59,6 +59,13 @@ namespace Project4_KhaledMarijn
             set { orders = value; OnPropertyChanged(); }
         }
 
+        private Order? newUser;
+        public Order? NewUser
+        {
+            get { return newUser; }
+            set { newUser = value; OnPropertyChanged(); }
+        }
+
         private Order? newOrder;
         public Order? NewOrder
         {
@@ -119,7 +126,7 @@ namespace Project4_KhaledMarijn
 
         private void AddOrder(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(NewOrderUser?.FirstName))
+            if (string.IsNullOrEmpty(NewOrderUser?.FirstName)) 
             {
                 MessageBox.Show("Enter a valid firstname!");
                 return;

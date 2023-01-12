@@ -58,19 +58,22 @@ namespace Project4_KhaledMarijn.Classes
                 try
                 {
                     conn.Open(); MySqlCommand sql = conn.CreateCommand();
-                    sql.CommandText = @"SELECT i.ingredientId, i.name, i.price, i.UnitId, u.name as unitName FROM ingredients i INNER JOIN units u ON u.UnitId = i.UnitId ORDER BY i.name";
+                    sql.CommandText = @"SELECT o.orderID, o.date, u.userID, u.firstname firstname, u.lastname lastname, u.address address, u.postalcode postalcode, u.city city FROM orders o INNER JOIN users u ON u.userID = o.userId";
                     MySqlDataReader reader = sql.ExecuteReader();
                     while (reader.Read())
                     {
                         Order order = new Order()
                         {
                             Id = (int)reader["orderID"],
-                            Date = (DateTime)reader["IngredientId"],
+                            Date = (DateTime)reader["date"],
+                            UserId = (int)reader["userId"],
                             User = new Customer()
                             {
-                                //FirstName = (int)reader["NOGINVULLEN"],
-                                //LastName = (string)reader["NOGINVULLEN"],
-                                // Zelfde voor address, city, postcode
+                                FirstName = (string)reader["firstname"],
+                                LastName = (string)reader["lastname"],
+                                Address = (string)reader["address"],
+                                PostalCode = (string)reader["postalcode"],
+                                City = (string)reader["city"],
                             }
                         };
                         orders.Add(order);
@@ -90,7 +93,7 @@ namespace Project4_KhaledMarijn.Classes
         public bool CreateOrder(Order order)
         {
             bool result;
-            if (order == null || order.Id <= 0 || order.User == null)
+            if (order == null || order.Id <= 0 || order.UserId == null)
             {
                 throw new ArgumentException("Ongeldig argument bij gebruik van CreateOrder");
             }
@@ -102,7 +105,7 @@ namespace Project4_KhaledMarijn.Classes
                     MySqlCommand sql = conn.CreateCommand();
                     sql.CommandText = @"INSERT INTO orders (date, userId) VALUES  (@date, @userId);";
                     sql.Parameters.AddWithValue("@date", order.Date);
-                    sql.Parameters.AddWithValue("@userId", order.User.Id);
+                    sql.Parameters.AddWithValue("@userId", order.UserId);
                     if (sql.ExecuteNonQuery() == 1)
                         result = true;
                     else

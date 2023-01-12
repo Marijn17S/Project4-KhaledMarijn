@@ -23,7 +23,7 @@ namespace Project4_KhaledMarijn.Classes
 
         public DateTime Date { get; set; }
 
-        public Customer? User { get; set; }
+        public int UserId { get; set; }
 
         public OrderStatus Status { get; set; }
     }
