@@ -10,7 +10,7 @@ namespace Project4_KhaledMarijn.Classes
 {
     public class Project4DB
     {
-    
+
         private string connString =
         ConfigurationManager.ConnectionStrings["Conn"].ConnectionString;
 
