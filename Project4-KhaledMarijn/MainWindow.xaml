@@ -55,12 +55,11 @@
 
                 <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="154*"/>
-                        <ColumnDefinition Width="69*"/>
-                        <ColumnDefinition Width="238*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Text="Lastname" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <TextBox Grid.Column="1" DataContext="{Binding NewOrderUser}" Text="{Binding Lastname}" MinWidth="100" MaxHeight="30" Grid.ColumnSpan="2"/>
+                    <TextBlock Grid.Column="0" Text="Lastname" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <TextBox Grid.Column="1" DataContext="{Binding NewOrderUser}" Text="{Binding Lastname}" MinWidth="100" MaxHeight="30"/>
                 </Grid>
 
                 <Grid Grid.Row="2">

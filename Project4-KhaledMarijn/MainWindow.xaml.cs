@@ -58,6 +58,13 @@ namespace Project4_KhaledMarijn
             set { orders = value; OnPropertyChanged(); }
         }
 
+        private Order? newUser;
+        public Order? NewUser
+        {
+            get { return newUser; }
+            set { newUser = value; OnPropertyChanged(); }
+        }
+
         private Order? newOrder;
         public Order? NewOrder
         {

@@ -74,7 +74,6 @@ namespace Project4_KhaledMarijn.Classes
                                 Address = (string)reader["address"],
                                 PostalCode = (string)reader["postalcode"],
                                 City = (string)reader["city"],
-                                // De REST
                             }
                         };
                         orders.Add(order);
