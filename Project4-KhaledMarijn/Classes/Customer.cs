@@ -56,5 +56,5 @@ namespace Project4_KhaledMarijn.Classes
         }
 
     }
-    
+
 }
