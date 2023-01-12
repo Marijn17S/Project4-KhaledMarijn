@@ -58,17 +58,7 @@ namespace Project4_KhaledMarijn
         }
 */
 
-        private Order newOrder = new();
-        public Order NewOrder
-        {
-            get { return newOrder; }
-            set
-            {
-                newOrder = value;
-                OnPropertyChanged();
-                NewOrder = null;
-            }
-        }
+       
 
         private void PopulatePizzas()
         {
@@ -82,11 +72,7 @@ namespace Project4_KhaledMarijn
 
         private void Add_order(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(NewOrder.FirstName))
-            {
-                MessageBox.Show("Type your firstname");
-                return;
-            }
+           
         }
 
         private void Confirm_payment(object sender, RoutedEventArgs e)
