@@ -27,6 +27,7 @@ namespace Project4_KhaledMarijn
         {
             InitializeComponent();
             PopulatePizzas();
+            //PopulateOrders();
             DataContext = this;
         }
 
@@ -69,7 +70,23 @@ namespace Project4_KhaledMarijn
         public Customer? NewOrderUser
         {
             get { return newOrderUser; }
-            set { newOrderUser = value; OnPropertyChanged(); }
+            set
+            {
+                newOrderUser = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Unit? newIngredientUnit;
+        public Unit? NewIngredientUnit
+        {
+            get { return newIngredientUnit; }
+            set
+            {
+                newIngredientUnit = value;
+                OnPropertyChanged();
+                NewIngredient.UnitId = value == null ? 0 : value.UnitId;
+            }
         }
 
         private Order? selectedOrder;
