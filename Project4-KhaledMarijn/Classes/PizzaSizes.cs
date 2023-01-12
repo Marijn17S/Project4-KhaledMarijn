@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Project4_KhaledMarijn.Classes
-{
-    internal enum PizzaSize
+{   
+    public enum PizzaSizes
     {
         Small,
         Medium,

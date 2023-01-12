@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Project4_KhaledMarijn.Classes
 {
-    public class Pizza : INotifyPropertyChanged
+    public class OrderPizza : INotifyPropertyChanged
     {
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -26,12 +26,25 @@ namespace Project4_KhaledMarijn.Classes
             set { pizzaId = value; OnPropertyChanged(); }
         }
 
-
         private string name;
         public string Name
         {
             get { return name; }
             set { name = value; OnPropertyChanged(); }
+        }
+
+        private string size;
+        public string Size
+        {
+            get { return size; }
+            set { size = value; OnPropertyChanged(); }
+        }
+
+        private int amount;
+        public int Amount
+        {
+            get { return amount; }
+            set { amount = value; OnPropertyChanged(); }
         }
 
         private decimal price;
@@ -48,5 +61,4 @@ namespace Project4_KhaledMarijn.Classes
             set { priceLabel = value; OnPropertyChanged(); }
         }
     }
-    }
-
+}

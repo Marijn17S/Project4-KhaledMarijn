@@ -27,7 +27,6 @@ namespace Project4_KhaledMarijn
         {
             InitializeComponent();
             PopulatePizzas();
-            //PopulateOrders();
             DataContext = this;
         }
 
@@ -52,11 +51,18 @@ namespace Project4_KhaledMarijn
             set { pizzas = value; OnPropertyChanged(); }
         }
 
-        private ObservableCollection<Order> orders = new();
-        public ObservableCollection<Order> Orders
+        private ObservableCollection<OrderPizza> orderPizzas = new();
+        public ObservableCollection<OrderPizza> OrderPizzas
         {
-            get { return orders; }
-            set { orders = value; OnPropertyChanged(); }
+            get { return orderPizzas; }
+            set { orderPizzas = value; OnPropertyChanged(); }
+        }
+
+        private OrderPizza? newOrderPizza;
+        public OrderPizza? NewOrderPizza
+        {
+            get { return newOrderPizza; }
+            set { newOrderPizza = value; OnPropertyChanged(); }
         }
 
         private Order? newUser;
@@ -77,23 +83,7 @@ namespace Project4_KhaledMarijn
         public Customer? NewOrderUser
         {
             get { return newOrderUser; }
-            set
-            {
-                newOrderUser = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private Unit? newIngredientUnit;
-        public Unit? NewIngredientUnit
-        {
-            get { return newIngredientUnit; }
-            set
-            {
-                newIngredientUnit = value;
-                OnPropertyChanged();
-                NewIngredient.UnitId = value == null ? 0 : value.UnitId;
-            }
+            set { newOrderUser = value; OnPropertyChanged(); }
         }
 
         private Order? selectedOrder;
@@ -101,6 +91,20 @@ namespace Project4_KhaledMarijn
         {
             get { return selectedOrder; }
             set { selectedOrder = value; OnPropertyChanged(); }
+        }
+
+        private Pizza? selectedPizza;
+        public Pizza? SelectedPizza
+        {
+            get { return selectedPizza; }
+            set { selectedPizza = value; OnPropertyChanged(); }
+        }
+
+        private int amount;
+        public int Amount
+        {
+            get { return amount; }
+            set { amount = value; OnPropertyChanged(); }
         }
         #endregion
 
@@ -114,17 +118,23 @@ namespace Project4_KhaledMarijn
             }
         }
 
-        private void PopulateOrders()
+        private void AddOrder(object sender, RoutedEventArgs e)
         {
-            Orders.Clear();
-            bool dbResult = db.GetOrders(Orders);
-            if (!dbResult)
+            /*if (string.IsNullOrEmpty(newOrderPizza?.Name) || newOrderPizza.PizzaID <= 0 ||
+                SelectedPizza?.Price <= (decimal)0.00 || SelectedPizza == null) return;*/
+
+            OrderPizza newPizza = new OrderPizza
             {
-                MessageBox.Show(dbResult + serviceDeskMessage);
-            }
+                Name = SelectedPizza.Name,
+                Amount = Amount,
+                Price = SelectedPizza.Price,
+                PriceLabel = SelectedPizza.PriceLabel,
+                Size = PizzaSize,
+            };
+            OrderPizzas.Add(newPizza);
         }
 
-        private void AddOrder(object sender, RoutedEventArgs e)
+        private void ConfirmPayment(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrEmpty(NewOrderUser?.FirstName)) 
             {
@@ -151,13 +161,8 @@ namespace Project4_KhaledMarijn
             if (!result)
             {
                 NewOrder = new();
-                PopulateOrders();
+                //PopulateOrders();
             }
-        }
-
-        private void ConfirmPayment(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

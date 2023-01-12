@@ -5,6 +5,7 @@ using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Project4_KhaledMarijn.Classes
 {
@@ -25,7 +26,7 @@ namespace Project4_KhaledMarijn.Classes
                 try
                 {
                     conn.Open(); MySqlCommand sql = conn.CreateCommand();
-                    sql.CommandText = @"SELECT * FROM `pizzas` WHERE 1";
+                    sql.CommandText = @"SELECT * FROM `pizzas`";
                     MySqlDataReader reader = sql.ExecuteReader();
                     while (reader.Read())
                     {

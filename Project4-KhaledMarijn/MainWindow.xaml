@@ -4,8 +4,18 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Project4_KhaledMarijn"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Title="Stonk's Pizza" Height="600" MinHeight="440" Width="1000" MinWidth="650">
+    <Window.Resources>
+        <ObjectDataProvider x:Key="dataFormEnum" MethodName="GetValues"
+                            ObjectType="{x:Type sys:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="local:PizzaSizes"/>
+            </ObjectDataProvider.MethodParameters>
+
+        </ObjectDataProvider>
+    </Window.Resources>
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="/images/Background.png" Stretch="UniformToFill"/>
@@ -20,7 +30,6 @@
             <RowDefinition Height="20*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <!--<Image Source="background.jpg"/>-->
         <Grid Background="White" Opacity="0.90" Grid.Column="1" Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -88,7 +97,7 @@
                         <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" Text="Pizza" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <ComboBox x:Name="cmb1" ItemsSource="{Binding Pizzas}" Grid.Column="1" MaxHeight="30" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                    <ComboBox x:Name="cmb1" ItemsSource="{Binding Pizzas}" SelectedItem="{Binding SelectedPizza, Mode=TwoWay}" Grid.Column="1" MaxHeight="30" ScrollViewer.VerticalScrollBarVisibility="Visible">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -97,17 +106,6 @@
                                 </StackPanel>
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
-                        <!--<ComboBoxItem Content="Calzone"/>
-                        <ComboBoxItem Content="Diavola"/>
-                        <ComboBoxItem Content="Frutedimare"/>
-                        <ComboBoxItem Content="Funghi"/>
-                        <ComboBoxItem Content="Hawaii"/>
-                        <ComboBoxItem Content="Margaritha"/>
-                        <ComboBoxItem Content="Napolitana"/>
-                        <ComboBoxItem Content="Peperone"/>
-                        <ComboBoxItem Content="Prosciutto"/>
-                        <ComboBoxItem Content="Tonno"/>
-                        <ComboBoxItem Content="Quattrostagioni"/>-->
                     </ComboBox>
                 </Grid>
 
@@ -117,7 +115,7 @@
                         <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" Text="Amount (Max 99):" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <TextBox Grid.Column="1" HorizontalAlignment="Left" MinWidth="35" Text="0" VerticalAlignment="Center" HorizontalContentAlignment="Center"/>
+                    <TextBox Text="{Binding Amount}" Grid.Column="1" HorizontalAlignment="Left" MinWidth="35" VerticalAlignment="Center" HorizontalContentAlignment="Center"/>
                 </Grid>
 
                 <Grid Grid.Row="6">
@@ -132,9 +130,13 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <TextBlock Text="Size:" Grid.Column="0" HorizontalAlignment="Center"/>
-                    <RadioButton GroupName="pizzaGrootte" Content="Small" Grid.Column="1" Grid.Row="0"/>
-                    <RadioButton GroupName="pizzaGrootte" Content="Medium" Grid.Column="1" Grid.Row="1"/>
-                    <RadioButton GroupName="pizzaGrootte" Content="Large" Grid.Column="1" Grid.Row="2"/>
+                    <ComboBox x:Name="cmb2" ItemsSource="{Binding Sizes}" SelectedItem="{Binding SelectedSize, Mode=TwoWay}" Grid.Column="1" MaxHeight="30" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding PizzaSize}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
                 </Grid>
 
                 <StackPanel Orientation="Horizontal" Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Bottom">
@@ -164,16 +166,21 @@
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
                         <RowDefinition Height="15*"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <TextBlock Text="Your order" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-                    <!-- Binding klopt nog niet -->
-                    <ListView Background="White" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Orders}" SelectedItem="{Binding SelectedOrder}">
+                    <TextBlock Grid.Row="0" Text="Your order" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="14"/>
+                    <TextBlock Grid.Row="1" Grid.Column="1" Text="Pizza" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+                    <TextBlock Grid.Row="1" Grid.Column="1" Text="Amount" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+                    <TextBlock Grid.Row="1" Grid.Column="1" Text="Price per piece" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                    <ListView Background="White" Grid.Row="2" Grid.Column="1" ItemsSource="{Binding OrderPizzas}"> <!--SelectedItem="{Binding SelectedOrder}"-->
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" Width="450">
-                                    <TextBlock Foreground="White" Text="{Binding Name}" MinWidth="350" MaxWidth="380"  Margin="3" TextWrapping="Wrap"/>
+                                    <TextBlock Foreground="Black" Text="{Binding Name}" MinWidth="150" MaxWidth="380"  Margin="3" TextWrapping="Wrap"/>
+                                    <TextBlock Foreground="Black" Text="{Binding Amount}" MinWidth="150" MaxWidth="380"  Margin="3" TextWrapping="Wrap"/>
+                                    <TextBlock Foreground="Black" Text="{Binding PriceLabel}" MinWidth="150" MaxWidth="380"  Margin="3" TextWrapping="Wrap"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
