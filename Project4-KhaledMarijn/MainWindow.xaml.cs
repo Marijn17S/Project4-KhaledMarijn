@@ -87,7 +87,7 @@ namespace Project4_KhaledMarijn
             set { newOrder = value; OnPropertyChanged(); }
         }
 
-        private Customer? newOrderUser;
+        private Customer? newOrderUser = new ();
         public Customer? NewOrderUser
         {
             get { return newOrderUser; }
