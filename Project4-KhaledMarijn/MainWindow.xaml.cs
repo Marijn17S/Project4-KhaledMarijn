@@ -27,6 +27,7 @@ namespace Project4_KhaledMarijn
         {
             InitializeComponent();
             PopulatePizzas();
+            PopulateSizes();
             DataContext = this;
         }
 
@@ -56,6 +57,13 @@ namespace Project4_KhaledMarijn
         {
             get { return orderPizzas; }
             set { orderPizzas = value; OnPropertyChanged(); }
+        }
+
+        private ObservableCollection<PizzaSize> sizes = new();
+        public ObservableCollection<PizzaSize> Sizes
+        {
+            get { return sizes; }
+            set { sizes = value; OnPropertyChanged(); }
         }
 
         private OrderPizza? newOrderPizza;
@@ -100,6 +108,13 @@ namespace Project4_KhaledMarijn
             set { selectedPizza = value; OnPropertyChanged(); }
         }
 
+        private PizzaSize? selectedSize;
+        public PizzaSize? SelectedSize
+        {
+            get { return selectedSize; }
+            set { selectedSize = value; OnPropertyChanged(); }
+        }
+
         private int amount;
         public int Amount
         {
@@ -111,17 +126,24 @@ namespace Project4_KhaledMarijn
         private void PopulatePizzas()
         {
             Pizzas.Clear();
-            bool dbResult = db.GetPizzas(Pizzas);
-            if (!dbResult)
-            {
-                MessageBox.Show(dbResult + serviceDeskMessage);
-            }
+            bool result = db.GetPizzas(Pizzas);
+            if (!result)
+                MessageBox.Show(serviceDeskMessage);
+        }
+
+        private void PopulateSizes()
+        {
+            Sizes.Clear();
+            bool result = db.GetSizes(Sizes);
+            if (!result)
+                MessageBox.Show(serviceDeskMessage);
         }
 
         private void AddOrder(object sender, RoutedEventArgs e)
         {
-            /*if (string.IsNullOrEmpty(newOrderPizza?.Name) || newOrderPizza.PizzaID <= 0 ||
-                SelectedPizza?.Price <= (decimal)0.00 || SelectedPizza == null) return;*/
+            if (SelectedPizza == null || string.IsNullOrEmpty(SelectedPizza.Name) || Amount <= 0 ||
+                SelectedPizza.Price <= 0 || string.IsNullOrEmpty(SelectedPizza.PriceLabel) ||
+                SelectedSize.SizeID <= 0) return;
 
             OrderPizza newPizza = new OrderPizza
             {
@@ -129,7 +151,7 @@ namespace Project4_KhaledMarijn
                 Amount = Amount,
                 Price = SelectedPizza.Price,
                 PriceLabel = SelectedPizza.PriceLabel,
-                /*Size = PizzaSize,*/
+                SizeId = SelectedSize.SizeID,
             };
             OrderPizzas.Add(newPizza);
         }

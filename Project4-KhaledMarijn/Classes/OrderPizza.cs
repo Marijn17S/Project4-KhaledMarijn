@@ -33,11 +33,11 @@ namespace Project4_KhaledMarijn.Classes
             set { name = value; OnPropertyChanged(); }
         }
 
-        private string size;
-        public string Size
+        private int sizeId;
+        public int SizeId
         {
-            get { return size; }
-            set { size = value; OnPropertyChanged(); }
+            get { return sizeId; }
+            set { sizeId = value; OnPropertyChanged(); }
         }
 
         private int amount;
@@ -59,6 +59,11 @@ namespace Project4_KhaledMarijn.Classes
         {
             get { return priceLabel; }
             set { priceLabel = value; OnPropertyChanged(); }
+        }
+
+        public string Size
+        {
+            get => SizeId == 1 ? "Small" : SizeId == 2 ? "Medium" : "Large";
         }
     }
 }

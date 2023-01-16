@@ -90,6 +90,66 @@ namespace Project4_KhaledMarijn.Classes
             return result;
         }
 
+        public bool GetSizes(ICollection<PizzaSize> sizes)
+        {
+            if (sizes == null)
+                throw new ArgumentException("Ongeldig argument bij gebruik van GetSizes");
+
+            using (MySqlConnection conn = new(connString))
+            {
+                try
+                {
+                    conn.Open(); MySqlCommand sql = conn.CreateCommand();
+                    sql.CommandText = @"SELECT * FROM `sizes`";
+                    MySqlDataReader reader = sql.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        PizzaSize size = new PizzaSize()
+                        {
+                            SizeID = (int)reader["sizeID"],
+                            Size = (string)reader["size"],
+                        }; sizes.Add(size);
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.Error.WriteLine(nameof(GetPizzas)); Console.Error.WriteLine(e.Message);
+                }
+            }
+            return true;
+        }
+
+        public bool CreatePizza(OrderPizza pizza)
+        {
+            bool result;
+            if (pizza == null || pizza.Price <= 0 || string.IsNullOrEmpty(pizza.Name))
+            {
+                throw new ArgumentException("Ongeldig argument bij gebruik van CreatePizza");
+            }
+            using (MySqlConnection conn = new(connString))
+            {
+                try
+                {
+                    conn.Open();
+                    MySqlCommand sql = conn.CreateCommand();
+                    sql.CommandText = @"INSERT INTO pizzas (name, price) VALUES (@name, @price);";
+                    sql.Parameters.AddWithValue("@name", pizza.Name);
+                    sql.Parameters.AddWithValue("@price", pizza.Price);
+                    if (sql.ExecuteNonQuery() == 1)
+                        result = true;
+                    else
+                        result = false;
+                }
+                catch (Exception e)
+                {
+                    Console.Error.WriteLine(nameof(CreateOrder));
+                    Console.Error.WriteLine(e.Message);
+                    result = false;
+                }
+            }
+            return result;
+        }
+
         // Niet af
         public bool CreateOrder(Order order)
         {
