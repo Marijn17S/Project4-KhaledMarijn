@@ -63,7 +63,7 @@ namespace Project4_KhaledMarijn.Classes
 
         public string Size
         {
-            get => SizeId == 1 ? "Small" : SizeId == 2 ? "Medium" : "Large";
+            get => SizeId == 1 ? "small" : SizeId == 2 ? "medium" : "large";
         }
     }
 }
