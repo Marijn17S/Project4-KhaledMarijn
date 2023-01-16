@@ -112,19 +112,16 @@
                 <Grid Grid.Row="6">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+
                     </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <TextBlock Text="Size:" Grid.Column="0" HorizontalAlignment="Center"/>
+                    <TextBlock Text="Size:" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     <ComboBox x:Name="cmb2" ItemsSource="{Binding Sizes}" SelectedItem="{Binding SelectedSize, Mode=TwoWay}" Grid.Column="1" MaxHeight="30" ScrollViewer.VerticalScrollBarVisibility="Visible">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding PizzaSize}"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Size}"/>
+                                </StackPanel>
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
@@ -168,10 +165,11 @@
                     <ListView Background="White" Grid.Row="2" Grid.Column="1" ItemsSource="{Binding OrderPizzas}"> <!--SelectedItem="{Binding SelectedOrder}"-->
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Orientation="Horizontal" Width="450">
-                                    <TextBlock Foreground="Black" Text="{Binding Name}" MinWidth="150" MaxWidth="380"  Margin="3" TextWrapping="Wrap"/>
-                                    <TextBlock Foreground="Black" Text="{Binding Amount}" MinWidth="150" MaxWidth="380"  Margin="3" TextWrapping="Wrap"/>
-                                    <TextBlock Foreground="Black" Text="{Binding PriceLabel}" MinWidth="150" MaxWidth="380"  Margin="3" TextWrapping="Wrap"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Foreground="Black" Text="{Binding Name}" MinWidth="120" MaxWidth="380"  Margin="3" TextWrapping="Wrap"/>
+                                    <TextBlock Foreground="Black" Text="{Binding Amount}" MinWidth="120" MaxWidth="380"  Margin="3" TextWrapping="Wrap"/>
+                                    <TextBlock Foreground="Black" Text="{Binding PriceLabel}" MinWidth="120" MaxWidth="380"  Margin="3" TextWrapping="Wrap"/>
+                                    <TextBlock Foreground="Black" Text="{Binding Size}" MinWidth="120" MaxWidth="380"  Margin="3" TextWrapping="Wrap"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
