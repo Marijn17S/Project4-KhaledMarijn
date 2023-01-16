@@ -154,22 +154,33 @@
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
                         <RowDefinition Height="15*"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" Text="Your order" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="14"/>
-                    <TextBlock Grid.Row="1" Grid.Column="1" Text="Pizza" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
-                    <TextBlock Grid.Row="1" Grid.Column="1" Text="Amount" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
-                    <TextBlock Grid.Row="1" Grid.Column="1" Text="Price per piece" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-                    <ListView Background="White" Grid.Row="2" Grid.Column="1" ItemsSource="{Binding OrderPizzas}"> <!--SelectedItem="{Binding SelectedOrder}"-->
+                    <ListView Background="White" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding OrderPizzas}"> <!--SelectedItem="{Binding SelectedOrder}"-->
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Foreground="Black" Text="{Binding Name}" MinWidth="120" MaxWidth="380"  Margin="3" TextWrapping="Wrap"/>
-                                    <TextBlock Foreground="Black" Text="{Binding Amount}" MinWidth="120" MaxWidth="380"  Margin="3" TextWrapping="Wrap"/>
-                                    <TextBlock Foreground="Black" Text="{Binding PriceLabel}" MinWidth="120" MaxWidth="380"  Margin="3" TextWrapping="Wrap"/>
-                                    <TextBlock Foreground="Black" Text="{Binding Size}" MinWidth="120" MaxWidth="380"  Margin="3" TextWrapping="Wrap"/>
+                                    <TextBlock Foreground="Black" Margin="3" TextWrapping="Wrap">
+                                        <Run Text="Pizza: "/>
+                                        <Run Text="{Binding Name}"/>
+                                        <Run Text=" | "/>
+                                    </TextBlock>
+                                    <TextBlock Foreground="Black" Margin="3" TextWrapping="Wrap">
+                                        <Run Text="amount: "/>
+                                        <Run Text="{Binding Amount}"/>
+                                        <Run Text=" | "/>
+                                    </TextBlock>
+                                    <TextBlock Foreground="Black" Margin="3" TextWrapping="Wrap">
+                                        <Run Text="priece per piece: "/>
+                                        <Run Text="{Binding PriceLabel}"/>
+                                        <Run Text=" | "/>
+                                    </TextBlock>
+                                    <TextBlock Foreground="Black" Margin="3" TextWrapping="Wrap">
+                                        <Run Text="size: "/>
+                                        <Run Text="{Binding Size, Mode=OneWay}"/>
+                                    </TextBlock>
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
