@@ -129,7 +129,7 @@ namespace Project4_KhaledMarijn
                 Amount = Amount,
                 Price = SelectedPizza.Price,
                 PriceLabel = SelectedPizza.PriceLabel,
-                Size = PizzaSize,
+                /*Size = PizzaSize,*/
             };
             OrderPizzas.Add(newPizza);
         }
