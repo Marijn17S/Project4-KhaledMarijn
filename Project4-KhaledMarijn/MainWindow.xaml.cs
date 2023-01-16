@@ -136,7 +136,7 @@ namespace Project4_KhaledMarijn
 
         private void ConfirmPayment(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(NewOrderUser?.FirstName)) 
+            if (string.IsNullOrEmpty(NewOrderUser?.FirstName))
             {
                 MessageBox.Show("Enter a valid firstname!");
                 return;
