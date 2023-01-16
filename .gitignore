@@ -9,6 +9,7 @@ bld/
 [Oo]bj/
 
 App.config
+*.config
 
 *.tmp
 
