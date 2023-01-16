@@ -129,14 +129,14 @@ namespace Project4_KhaledMarijn
                 Amount = Amount,
                 Price = SelectedPizza.Price,
                 PriceLabel = SelectedPizza.PriceLabel,
-                Size = PizzaSize,
+                /*Size = PizzaSize,*/
             };
             OrderPizzas.Add(newPizza);
         }
 
         private void ConfirmPayment(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(NewOrderUser?.FirstName)) 
+            if (string.IsNullOrEmpty(NewOrderUser?.FirstName))
             {
                 MessageBox.Show("Enter a valid firstname!");
                 return;
