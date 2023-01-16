@@ -50,7 +50,7 @@
                         <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" Text="Firstname" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <TextBox DataContext="{Binding NewOrderUser}" Text="{Binding Firstname}" Grid.Column="1" MinWidth="100" MaxHeight="30"/>
+                    <TextBox DataContext="{Binding NewOrderUser}" Text="{Binding FirstName}" Grid.Column="1" MinWidth="100" MaxHeight="30"/>
                 </Grid>
 
                 <Grid Grid.Row="1">
@@ -59,7 +59,7 @@
                         <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" Text="Lastname" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <TextBox Grid.Column="1" DataContext="{Binding NewOrderUser}" Text="{Binding Lastname}" MinWidth="100" MaxHeight="30"/>
+                    <TextBox Grid.Column="1" DataContext="{Binding NewOrderUser}" Text="{Binding LastName}" MinWidth="100" MaxHeight="30"/>
                 </Grid>
 
                 <Grid Grid.Row="2">
