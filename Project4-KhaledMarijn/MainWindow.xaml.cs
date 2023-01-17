@@ -179,11 +179,25 @@ namespace Project4_KhaledMarijn
                 return;
             }
 
+            if (string.IsNullOrEmpty(NewOrderUser?.City) /* && Regex match 4 cijfers 2 letters postcode*/)
+            {
+                MessageBox.Show("Enter a valid city!");
+                return;
+            }
+
             bool result = NewOrder != null && db.CreateOrder(NewOrder);
             if (!result)
             {
                 NewOrder = new();
                 //PopulateOrders();
+            }
+        }
+
+        private void Delete_item(object sender, MouseButtonEventArgs e)
+        {
+            if (listview1.SelectedItem != null)
+            {
+               OrderPizzas.RemoveAt(listview1.SelectedIndex);
             }
         }
     }
