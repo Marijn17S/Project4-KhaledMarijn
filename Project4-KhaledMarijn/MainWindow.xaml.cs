@@ -8,6 +8,7 @@ using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -141,9 +142,9 @@ namespace Project4_KhaledMarijn
 
         private void AddOrder(object sender, RoutedEventArgs e)
         {
-            if (SelectedPizza == null || string.IsNullOrEmpty(SelectedPizza.Name) || Amount <= 0 ||
-                SelectedPizza.Price <= 0 || string.IsNullOrEmpty(SelectedPizza.PriceLabel) ||
-                SelectedSize.SizeID <= 0) return;
+            if (SelectedSize != null && (SelectedPizza == null || string.IsNullOrEmpty(SelectedPizza.Name) || Amount <= 0 ||
+                                         SelectedPizza.Price <= 0 || string.IsNullOrEmpty(SelectedPizza.PriceLabel) ||
+                                         SelectedSize.SizeID <= 0)) return;
 
             OrderPizza newPizza = new OrderPizza
             {
@@ -158,6 +159,7 @@ namespace Project4_KhaledMarijn
 
         private void ConfirmPayment(object sender, RoutedEventArgs e)
         {
+            //var regex = new Regex("/^[1-9][0-9]{3}[\\s]?[A-Za-z]{2}$/i");
             if (string.IsNullOrEmpty(NewOrderUser?.FirstName))
             {
                 MessageBox.Show("Enter a valid firstname!");
@@ -173,7 +175,7 @@ namespace Project4_KhaledMarijn
                 MessageBox.Show("Enter a valid address!");
                 return;
             }
-            if (string.IsNullOrEmpty(NewOrderUser?.PostalCode) /* && Regex match 4 cijfers 2 letters postcode*/)
+            if (string.IsNullOrEmpty(NewOrderUser?.PostalCode) /*|| !regex.IsMatch(NewOrderUser.PostalCode)*/)
             {
                 MessageBox.Show("Enter a valid postal code!");
                 return;
