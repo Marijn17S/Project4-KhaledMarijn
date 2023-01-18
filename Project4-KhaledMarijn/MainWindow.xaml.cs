@@ -155,6 +155,9 @@ namespace Project4_KhaledMarijn
                 SizeId = SelectedSize.SizeID,
             };
             OrderPizzas.Add(newPizza);
+            decimal total = Convert.ToDecimal(orderTotal.Text.Substring(1));
+            total += newPizza.Price * newPizza.Amount;
+            orderTotal.Text = total.ToString("C2");
         }
 
         private void ConfirmPayment(object sender, RoutedEventArgs e)
