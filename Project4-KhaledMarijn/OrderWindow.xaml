@@ -5,8 +5,40 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Project4_KhaledMarijn"
         mc:Ignorable="d"
-        Title="OrderWindow" Height="450" Width="800">
+        Title="OrderWindow" MinHeight="500" MinWidth="400" MaxHeight="500" MaxWidth="400">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Text="Your orders" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="14" FontWeight="Bold"/>
+        <ListView Background="White" Grid.Row="1" ItemsSource="{Binding Orders}" d:ItemsSource="{d:SampleData ItemCount=5}"> <!--SelectedItem="{Binding SelectedOrder}"-->
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Foreground="Black" Margin="3" TextWrapping="Wrap">
+                            <Run Text="Ordernumber: "/>
+                            <Run Text="{Binding OrderID}"/>
+                            <Run Text=" | "/>
+                        </TextBlock>
+                        <TextBlock Foreground="Black" Margin="3" TextWrapping="Wrap">
+                            <Run Text="status: "/>
+                            <Run Text="{Binding Status}"/>
+                            <Run Text=" | "/>
+                        </TextBlock>
+                        <!--<TextBlock Foreground="Black" Margin="3" TextWrapping="Wrap">
+                            <Run Text="total price: "/>
+                            <Run Text="{Binding PriceLabel}"/>
+                            <Run Text=" | "/>
+                        </TextBlock>-->
+                        <TextBlock Foreground="Black" Margin="3" TextWrapping="Wrap">
+                            <Run Text="date: "/>
+                            <Run Text="{Binding Date}"/>
+                            <Run Text=" | "/>
+                        </TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Window>
