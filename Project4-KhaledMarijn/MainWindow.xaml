@@ -157,7 +157,7 @@
                         <RowDefinition Height="15*"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Text="Your order" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="14"/>
+                    <TextBlock Grid.Row="0" Text="Your order" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="14" FontWeight="Bold"/>
                     <ListView x:Name="listview1" MouseDoubleClick="Delete_item" Background="White" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding OrderPizzas}"> <!--SelectedItem="{Binding SelectedOrder}"-->
                         <ListView.ItemTemplate>
                             <DataTemplate>
