@@ -142,6 +142,10 @@ namespace Project4_KhaledMarijn
 
         private void AddOrder(object sender, RoutedEventArgs e)
         {
+            if (SelectedSize != null && (SelectedPizza == null || string.IsNullOrEmpty(SelectedPizza.Name) || Amount <= 0 ||
+                                         SelectedPizza.Price <= 0 || string.IsNullOrEmpty(SelectedPizza.PriceLabel) ||
+                                         SelectedSize.SizeID <= 0)) return;
+
             if (SelectedSize?.SizeID == 1)
             {
                 SelectedPizza.Price *= (decimal)0.75;
@@ -150,10 +154,6 @@ namespace Project4_KhaledMarijn
             {
                 SelectedPizza.Price *= (decimal)1.25;
             }
-
-            if (SelectedSize != null && (SelectedPizza == null || string.IsNullOrEmpty(SelectedPizza.Name) || Amount <= 0 ||
-                                         SelectedPizza.Price <= 0 || string.IsNullOrEmpty(SelectedPizza.PriceLabel) ||
-                                         SelectedSize.SizeID <= 0)) return;
 
             OrderPizza newPizza = new OrderPizza
             {
