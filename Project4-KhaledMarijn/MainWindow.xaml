@@ -127,10 +127,10 @@
                     </ComboBox>
                 </Grid>
 
-                <StackPanel Orientation="Horizontal" Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                <!--<StackPanel Orientation="Horizontal" Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Bottom">
                     <TextBlock Text="Total amount: " VerticalAlignment="Center"/>
                     <TextBlock Text="€0,00" VerticalAlignment="Center"/>
-                </StackPanel>
+                </StackPanel>-->
 
                 <Grid Grid.Row="8">
                     <Button Click="AddOrder" Content="Add to order" MaxHeight="35" MaxWidth="200"/>
@@ -158,7 +158,7 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" Text="Your order" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="14" FontWeight="Bold"/>
-                    <ListView x:Name="listview1" MouseDoubleClick="RemovePizza" Background="White" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding OrderPizzas}"> <!--SelectedItem="{Binding SelectedOrder}"-->
+                    <ListView x:Name="OrderList" MouseDoubleClick="RemovePizza" Background="White" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding OrderPizzas}" SelectedItem="{Binding SelectedOrderPizza}">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
