@@ -25,8 +25,8 @@ namespace Project4_KhaledMarijn.Classes
             set { sizeID = value; OnPropertyChanged(); }
         }
 
-        private string size;
-        public string Size
+        private string? size;
+        public string? Size
         {
             get { return size; }
             set { size = value; OnPropertyChanged(); }

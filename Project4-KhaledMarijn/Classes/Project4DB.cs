@@ -119,7 +119,8 @@ namespace Project4_KhaledMarijn.Classes
             return true;
         }
 
-        public bool CreatePizza(OrderPizza pizza)
+        // Medewerkers
+        /*public bool CreatePizza(OrderPizza pizza)
         {
             bool result;
             if (pizza == null || pizza.Price <= 0 || string.IsNullOrEmpty(pizza.Name))
@@ -148,25 +149,95 @@ namespace Project4_KhaledMarijn.Classes
                 }
             }
             return result;
-        }
+        }*/
 
-        // Niet af
-        public bool CreateOrder(Order order)
+        public (bool, long) CreateUser(Customer user)
         {
             bool result;
-            if (order == null || order.Id <= 0 || order.UserId == null)
-            {
-                throw new ArgumentException("Ongeldig argument bij gebruik van CreateOrder");
-            }
+            long id = 0;
+            if (user == null)
+                throw new ArgumentException("Ongeldig argument bij gebruik van CreateUser");
             using (MySqlConnection conn = new(connString))
             {
                 try
                 {
                     conn.Open();
                     MySqlCommand sql = conn.CreateCommand();
-                    sql.CommandText = @"INSERT INTO orders (date, userId) VALUES  (@date, @userId);";
-                    sql.Parameters.AddWithValue("@date", order.Date);
+                    sql.CommandText = @"INSERT INTO users (firstname, lastname, address, postalcode, city) VALUES (@firstname, @lastname, @address, @postalcode, @city);";
+                    sql.Parameters.AddWithValue("@firstname", user.FirstName);
+                    sql.Parameters.AddWithValue("@lastname", user.LastName);
+                    sql.Parameters.AddWithValue("@address", user.Address);
+                    sql.Parameters.AddWithValue("@postalcode", user.PostalCode);
+                    sql.Parameters.AddWithValue("@city", user.City);
+                    if (sql.ExecuteNonQuery() == 1)
+                    {
+                        id = sql.LastInsertedId;
+                        result = true;
+                    }
+                    else
+                        result = false;
+                }
+                catch (Exception e)
+                {
+                    Console.Error.WriteLine(nameof(CreateUser));
+                    Console.Error.WriteLine(e.Message);
+                    result = false;
+                }
+            }
+            return (result, id);
+        }
+
+        // Niet af
+        public (bool, long) CreateOrder(Order order)
+        {
+            bool result;
+            long id = 0;
+            //if (order == null || order.UserId <= 0)
+                //throw new ArgumentException("Ongeldig argument bij gebruik van CreateOrder");
+            using (MySqlConnection conn = new(connString))
+            {
+                try
+                {
+                    conn.Open();
+                    MySqlCommand sql = conn.CreateCommand();
+                    sql.CommandText = @"INSERT INTO orders (userId, date, status) VALUES (@userId, @date, @status);";
+                    sql.Parameters.AddWithValue("@date", order.Date.ToUniversalTime());
                     sql.Parameters.AddWithValue("@userId", order.UserId);
+                    sql.Parameters.AddWithValue("@status", order.Status);
+                    if (sql.ExecuteNonQuery() == 1)
+                    {
+                        id = sql.LastInsertedId;
+                        result = true;
+                    }
+                    else
+                        result = false;
+                }
+                catch (Exception e)
+                {
+                    Console.Error.WriteLine(nameof(CreateOrder));
+                    Console.Error.WriteLine(e.Message);
+                    result = false;
+                }
+            }
+            return (result, id);
+        }
+
+        public bool CreateOrder_Pizza(OrderPizza pizza, int orderId)
+        {
+            bool result;
+            if (pizza == null)
+                throw new ArgumentException("Ongeldig argument bij gebruik van CreateOrder_Pizza");
+            using (MySqlConnection conn = new(connString))
+            {
+                try
+                {
+                    conn.Open();
+                    MySqlCommand sql = conn.CreateCommand();
+                    sql.CommandText = @"INSERT INTO order_pizza (orderId, pizzaId, sizeId, amount) VALUES (@orderId, @pizzaId, @sizeId, @amount);";
+                    sql.Parameters.AddWithValue("@orderId", orderId);
+                    sql.Parameters.AddWithValue("@pizzaId", pizza.PizzaID);
+                    sql.Parameters.AddWithValue("@sizeId", pizza.SizeId);
+                    sql.Parameters.AddWithValue("@amount", pizza.Amount);
                     if (sql.ExecuteNonQuery() == 1)
                         result = true;
                     else
@@ -174,7 +245,7 @@ namespace Project4_KhaledMarijn.Classes
                 }
                 catch (Exception e)
                 {
-                    Console.Error.WriteLine(nameof(CreateOrder));
+                    Console.Error.WriteLine(nameof(CreateOrder_Pizza));
                     Console.Error.WriteLine(e.Message);
                     result = false;
                 }
