@@ -27,6 +27,6 @@ namespace Project4_KhaledMarijn.Classes
 
         public Customer? User { get; set; }
 
-        public OrderStatus Status { get; set; }
+        public string Status { get; set; }
     }
 }

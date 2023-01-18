@@ -81,7 +81,7 @@ namespace Project4_KhaledMarijn
             set { newUser = value; OnPropertyChanged(); }
         }
 
-        private Order? newOrder;
+        private Order? newOrder = new();
         public Order? NewOrder
         {
             get { return newOrder; }
@@ -162,6 +162,7 @@ namespace Project4_KhaledMarijn
                 Price = SelectedPizza.Price,
                 PriceLabel = SelectedPizza.PriceLabel,
                 SizeId = SelectedSize.SizeID,
+                PizzaID = SelectedPizza.PizzaID,
             };
             OrderPizzas.Add(newPizza);
             decimal total = Convert.ToDecimal(orderTotal.Text.Substring(1));
@@ -199,15 +200,27 @@ namespace Project4_KhaledMarijn
                 return;
             }
 
-            bool result = NewOrder != null && db.CreateOrder(NewOrder);
-            if (!result)
-            {
+            var result = db.CreateUser(NewOrderUser);
+            if (!result.Item1)
+                NewOrderUser = new();
+
+            NewOrderUser.Id = (int)result.Item2;
+            NewOrder.UserId = NewOrderUser.Id;
+            NewOrder.Status = OrderStatus.queue;
+            NewOrder.Date = DateTime.Now;
+            var result2 = db.CreateOrder(NewOrder);
+            if (!result2.Item1)
                 NewOrder = new();
-                //PopulateOrders();
+
+            NewOrder.Id = (int)result2.Item2;
+
+            foreach (var pizza in OrderPizzas)
+            {
+                bool result3 = pizza != null && db.CreateOrder_Pizza(pizza, NewOrder.Id);
             }
         }
 
-        private void Delete_item(object sender, MouseButtonEventArgs e)
+        private void RemovePizza(object sender, MouseButtonEventArgs e)
         {
             if (listview1.SelectedItem != null)
             {

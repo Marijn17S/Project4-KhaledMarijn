@@ -18,38 +18,38 @@ namespace Project4_KhaledMarijn.Classes
         }
         #endregion
 
-        public string Id { get; set; }
+        public int Id { get; set; }
 
-        private string firstName;
-        public string FirstName
+        private string? firstName;
+        public string? FirstName
         {
             get { return firstName; }
             set { firstName = value; OnPropertyChanged(); }
         }
 
-        private string lastName;
-        public string LastName
+        private string? lastName;
+        public string? LastName
         {
             get { return lastName; }
             set { lastName = value; OnPropertyChanged(); }
         }
 
-        private string address;
-        public string Address
+        private string? address;
+        public string? Address
         {
             get { return address; }
             set { address = value; OnPropertyChanged(); }
         }
 
-        private string city;
-        public string City
+        private string? city;
+        public string? City
         {
             get { return city; }
             set { city = value; OnPropertyChanged(); }
         }
 
-        private string postalCode;
-        public string PostalCode
+        private string? postalCode;
+        public string? PostalCode
         {
             get { return postalCode; }
             set { postalCode = value; OnPropertyChanged(); }

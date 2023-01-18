@@ -26,8 +26,8 @@ namespace Project4_KhaledMarijn.Classes
             set { pizzaId = value; OnPropertyChanged(); }
         }
 
-        private string name;
-        public string Name
+        private string? name;
+        public string? Name
         {
             get { return name; }
             set { name = value; OnPropertyChanged(); }
@@ -54,8 +54,8 @@ namespace Project4_KhaledMarijn.Classes
             set { price = value; OnPropertyChanged(); }
         }
 
-        private string priceLabel;
-        public string PriceLabel
+        private string? priceLabel;
+        public string? PriceLabel
         {
             get { return priceLabel; }
             set { priceLabel = value; OnPropertyChanged(); }

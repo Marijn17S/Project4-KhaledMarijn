@@ -12,7 +12,7 @@
             <RowDefinition Height="20*"/>
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Text="Your orders" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="14" FontWeight="Bold"/>
-        <ListView Background="White" Grid.Row="1" ItemsSource="{Binding Orders}" d:ItemsSource="{d:SampleData ItemCount=5}"> <!--SelectedItem="{Binding SelectedOrder}"-->
+        <ListView Background="White" Grid.Row="1" ItemsSource="{Binding Orders}"> <!--SelectedItem="{Binding SelectedOrder}"-->
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
