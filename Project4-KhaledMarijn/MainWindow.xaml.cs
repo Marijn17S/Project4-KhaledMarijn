@@ -74,6 +74,13 @@ namespace Project4_KhaledMarijn
             set { newOrderPizza = value; OnPropertyChanged(); }
         }
 
+        private OrderPizza? selectedOrderPizza;
+        public OrderPizza? SelectedOrderPizza
+        {
+            get { return selectedOrderPizza; }
+            set { selectedOrderPizza = value; OnPropertyChanged(); }
+        }
+
         private Order? newUser;
         public Order? NewUser
         {
@@ -142,9 +149,9 @@ namespace Project4_KhaledMarijn
 
         private void AddOrder(object sender, RoutedEventArgs e)
         {
-            if (SelectedSize != null && (SelectedPizza == null || string.IsNullOrEmpty(SelectedPizza.Name) || Amount <= 0 ||
+            if ((SelectedPizza == null || string.IsNullOrEmpty(SelectedPizza.Name) || Amount <= 0 ||
                                          SelectedPizza.Price <= 0 || string.IsNullOrEmpty(SelectedPizza.PriceLabel) ||
-                                         SelectedSize.SizeID <= 0)) return;
+                                         SelectedSize == null || SelectedSize.SizeID <= 0)) return;
 
             decimal price = SelectedPizza.Price;
             if (SelectedSize?.SizeID == 1)
@@ -215,13 +222,23 @@ namespace Project4_KhaledMarijn
             {
                 bool result3 = pizza != null && db.CreateOrder_Pizza(pizza, NewOrder.Id);
             }
+
+            NewOrderUser = new();
+            SelectedPizza = null;
+            Amount = 0;
+            SelectedSize = null;
+            orderTotal.Text = 0.ToString("C2");
+            OrderPizzas.Clear();
         }
 
         private void RemovePizza(object sender, MouseButtonEventArgs e)
         {
-            if (listview1.SelectedItem != null)
+            if (OrderList.SelectedItem != null && SelectedOrderPizza != null)
             {
-               OrderPizzas.RemoveAt(listview1.SelectedIndex);
+                decimal total = Convert.ToDecimal(orderTotal.Text.Substring(1));
+                total -= SelectedOrderPizza.Price * SelectedOrderPizza.Amount;
+                orderTotal.Text = total.ToString("C2");
+                OrderPizzas.RemoveAt(OrderList.SelectedIndex);
             }
         }
     }
