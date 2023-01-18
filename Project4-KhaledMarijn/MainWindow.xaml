@@ -158,7 +158,7 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" Text="Your order" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="14" FontWeight="Bold"/>
-                    <ListView x:Name="listview1" MouseDoubleClick="Delete_item" Background="White" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding OrderPizzas}"> <!--SelectedItem="{Binding SelectedOrder}"-->
+                    <ListView x:Name="listview1" MouseDoubleClick="RemovePizza" Background="White" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding OrderPizzas}"> <!--SelectedItem="{Binding SelectedOrder}"-->
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -173,7 +173,7 @@
                                         <Run Text=" | "/>
                                     </TextBlock>
                                     <TextBlock Foreground="Black" Margin="3" TextWrapping="Wrap">
-                                        <Run Text="priece per piece: "/>
+                                        <Run Text="price per piece: "/>
                                         <Run Text="{Binding PriceLabel}"/>
                                         <Run Text=" | "/>
                                     </TextBlock>
