@@ -186,7 +186,10 @@
                         </ListView.ItemTemplate>
                     </ListView>
                 </Grid>
-                <TextBlock TextAlignment="Center" Text="Total amount €0,00" Grid.Row="2"/>
+                <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                    <TextBlock Text="Total amount: " VerticalAlignment="Center"/>
+                    <TextBlock Name="orderTotal" Text="€0,00" VerticalAlignment="Center"/>
+                </StackPanel>
                 <Button Click="ConfirmPayment" Content="Continue to payment" MaxHeight="35" MaxWidth="200" Grid.Row="3"/>
             </Grid>
         </Grid>
