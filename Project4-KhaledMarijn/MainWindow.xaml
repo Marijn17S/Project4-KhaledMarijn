@@ -173,7 +173,7 @@
                                         <Run Text=" | "/>
                                     </TextBlock>
                                     <TextBlock Foreground="Black" Margin="3" TextWrapping="Wrap">
-                                        <Run Text="priece per piece: "/>
+                                        <Run Text="price per piece: "/>
                                         <Run Text="{Binding PriceLabel}"/>
                                         <Run Text=" | "/>
                                     </TextBlock>
