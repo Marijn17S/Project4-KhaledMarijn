@@ -208,6 +208,14 @@ namespace Project4_KhaledMarijn
                 return;
             }
 
+            if (OrderPizzas.Count <= 0)
+            {
+                MessageBox.Show("Add a pizza to your order.");
+                return;
+            }
+
+
+
             var result = db.CreateUser(NewOrderUser);
             if (!result.Item1)
                 NewOrderUser = new();
@@ -233,7 +241,13 @@ namespace Project4_KhaledMarijn
             SelectedSize = null;
             orderTotal.Text = 0.ToString("C2");
             OrderPizzas.Clear();
+
+           
+            
         }
+
+
+
 
         private void RemovePizza(object sender, MouseButtonEventArgs e)
         {
