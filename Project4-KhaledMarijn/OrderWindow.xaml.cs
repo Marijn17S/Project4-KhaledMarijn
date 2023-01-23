@@ -74,7 +74,7 @@ namespace Project4_KhaledMarijn
 
         private void RemoveOrder(object sender, MouseButtonEventArgs e)
         {
-            if (OrderList.SelectedItem != null)
+            if (OrderList.SelectedItem != null && (Orders[OrderList.SelectedIndex].Status == OrderStatus.queue || Orders[OrderList.SelectedIndex].Status == OrderStatus.preparing))
             {
                 bool result = db.DeleteOrder(Orders[OrderList.SelectedIndex].Id);
                 Orders.RemoveAt(OrderList.SelectedIndex);
