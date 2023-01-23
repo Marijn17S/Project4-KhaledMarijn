@@ -78,7 +78,10 @@ namespace Project4_KhaledMarijn
             {
                 bool result = db.DeleteOrder(Orders[OrderList.SelectedIndex].Id);
                 Orders.RemoveAt(OrderList.SelectedIndex);
+                return;
             }
+
+            MessageBox.Show("Too late!! You can not cancel your order anymore");
         }
     }
 }
