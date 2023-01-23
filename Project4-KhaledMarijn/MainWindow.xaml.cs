@@ -43,6 +43,7 @@ namespace Project4_KhaledMarijn
         #region fields
         private readonly Project4DB db = new Project4DB();
         private readonly string serviceDeskMessage = "\n\nSomething went wrong";
+        OrderWindow orderWindow = new();
         #endregion
 
         #region Properties
@@ -242,6 +243,8 @@ namespace Project4_KhaledMarijn
             orderTotal.Text = 0.ToString("C2");
             OrderPizzas.Clear();
 
+            orderWindow.Show();
+
            
             
         }
@@ -258,6 +261,11 @@ namespace Project4_KhaledMarijn
                 orderTotal.Text = total.ToString("C2");
                 OrderPizzas.RemoveAt(OrderList.SelectedIndex);
             }
+        }
+
+        private void Orders(object sender, RoutedEventArgs e)
+        {
+            orderWindow.Show();
         }
     }
 }

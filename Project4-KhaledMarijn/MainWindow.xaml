@@ -190,7 +190,15 @@
                     <TextBlock Text="Total amount: " VerticalAlignment="Center"/>
                     <TextBlock Name="orderTotal" Text="€0,00" VerticalAlignment="Center"/>
                 </StackPanel>
-                <Button Click="ConfirmPayment" Content="Continue to payment" MaxHeight="35" MaxWidth="200" Grid.Row="3"/>
+                <Grid Grid.Row="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Click="ConfirmPayment" Content="Continue to payment" MaxHeight="35" MinWidth="175" MaxWidth="200" Grid.Column="0" HorizontalAlignment="Right"/>
+                    <Button Click="Orders" Content="Orders" MaxHeight="35" MaxWidth="100" Grid.Column="1"/>
+                </Grid>
             </Grid>
         </Grid>
     </Grid>

@@ -59,7 +59,7 @@ namespace Project4_KhaledMarijn.Classes
                 try
                 {
                     conn.Open(); MySqlCommand sql = conn.CreateCommand();
-                    sql.CommandText = @"SELECT o.orderID, o.date, u.userID, u.firstname firstname, u.lastname lastname, u.address address, u.postalcode postalcode, u.city city FROM orders o INNER JOIN users u ON u.userID = o.userId";
+                    sql.CommandText = @"SELECT o.orderID, o.date, u.userID, o.status, u.firstname firstname, u.lastname lastname, u.address address, u.postalcode postalcode, u.city city FROM orders o INNER JOIN users u ON u.userID = o.userId";
                     MySqlDataReader reader = sql.ExecuteReader();
                     while (reader.Read())
                     {
@@ -68,6 +68,7 @@ namespace Project4_KhaledMarijn.Classes
                             Id = (int)reader["orderID"],
                             Date = (DateTime)reader["date"],
                             UserId = (int)reader["userId"],
+                            Status = (string)reader["status"],
                             User = new Customer()
                             {
                                 FirstName = (string)reader["firstname"],
