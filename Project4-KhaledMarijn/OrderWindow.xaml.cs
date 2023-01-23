@@ -1,6 +1,10 @@
-﻿using System;
+﻿using Project4_KhaledMarijn.Classes;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -22,6 +26,60 @@ namespace Project4_KhaledMarijn
         public OrderWindow()
         {
             InitializeComponent();
+            PopulateOrders();
+            DataContext= this;
+        }
+
+
+        #region INotifyPropertyChanged
+        public event PropertyChangedEventHandler? PropertyChanged;
+        protected void OnPropertyChanged([CallerMemberName] string? name = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+        #endregion
+
+        #region fields
+        private readonly Project4DB db = new Project4DB();
+        private readonly string serviceDeskMessage = "\n\nSomething went wrong";
+        #endregion
+
+
+
+        #region Properties
+        private ObservableCollection<Order> orders = new();
+        public ObservableCollection<Order> Orders
+        {
+            get { return orders; }
+            set { orders = value; OnPropertyChanged(); }
+        }
+
+
+        private Order? selectedOrder;
+        public Order? SelectedOrder
+        {
+            get { return selectedOrder; }
+            set { selectedOrder = value; OnPropertyChanged(); }
+        }
+
+        #endregion
+
+
+        private void PopulateOrders()
+        {
+            Orders.Clear();
+            bool result = db.GetOrders(Orders);
+            if (!result)
+                MessageBox.Show(serviceDeskMessage);
+        }
+
+        private void RemoveOrder(object sender, MouseButtonEventArgs e)
+        {
+            if (OrderList.SelectedItem != null)
+            {
+                Orders.RemoveAt(OrderList.SelectedIndex);
+            }
         }
     }
 }
+    

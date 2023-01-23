@@ -7,18 +7,22 @@
         mc:Ignorable="d"
         Title="OrderWindow" MinHeight="500" MinWidth="400" MaxHeight="500" MaxWidth="400">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="97*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="20*"/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Text="Your orders" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="14" FontWeight="Bold"/>
-        <ListView Background="White" Grid.Row="1" ItemsSource="{Binding Orders}"> <!--SelectedItem="{Binding SelectedOrder}"-->
+        <TextBlock Grid.Row="0" Text="Your orders" VerticalAlignment="Bottom" HorizontalAlignment="Left" FontSize="14" FontWeight="Bold" Margin="162,0,0,0"/>
+        <ListView Background="White" x:Name="OrderList" ItemsSource="{Binding Orders}" SelectedItem="{Binding SelectedOrder}" MouseDoubleClick="RemoveOrder" Grid.ColumnSpan="2" Margin="0,23,0,0" Grid.RowSpan="2" d:ItemsSource="{d:SampleData ItemCount=5}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Foreground="Black" Margin="3" TextWrapping="Wrap">
                             <Run Text="Ordernumber: "/>
-                            <Run Text="{Binding OrderID}"/>
+                            <Run Text="{Binding Id}"/>
                             <Run Text=" | "/>
                         </TextBlock>
                         <TextBlock Foreground="Black" Margin="3" TextWrapping="Wrap">
