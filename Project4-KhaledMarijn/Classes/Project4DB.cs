@@ -253,5 +253,30 @@ namespace Project4_KhaledMarijn.Classes
             }
             return result;
         }
+
+        public bool DeleteOrder(int orderId)
+        {
+            bool result = false;
+            using (MySqlConnection conn = new(connString))
+            {
+                try
+                {
+                    conn.Open();
+                    MySqlCommand sql = conn.CreateCommand();
+                    sql.CommandText = @"DELETE FROM orders WHERE orderId = @orderId ";
+                    sql.Parameters.AddWithValue("@orderId", orderId);
+                    if (sql.ExecuteNonQuery() == 1)
+                        result = true;
+                    else
+                        result = false;
+                }
+                catch (Exception e)
+                {
+                    Console.Error.WriteLine(nameof(DeleteOrder));
+                    Console.Error.WriteLine(e.Message);
+                }
+            }
+            return result;
+        }
     }
 }

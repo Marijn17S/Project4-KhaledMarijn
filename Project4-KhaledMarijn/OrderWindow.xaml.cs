@@ -45,7 +45,6 @@ namespace Project4_KhaledMarijn
         #endregion
 
 
-
         #region Properties
         private ObservableCollection<Order> orders = new();
         public ObservableCollection<Order> Orders
@@ -77,6 +76,7 @@ namespace Project4_KhaledMarijn
         {
             if (OrderList.SelectedItem != null)
             {
+                bool result = db.DeleteOrder(Orders[OrderList.SelectedIndex].Id);
                 Orders.RemoveAt(OrderList.SelectedIndex);
             }
         }
