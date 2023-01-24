@@ -13,5 +13,13 @@ namespace Project4_KhaledMarijn.Classes
         public static readonly string baking = "Baking";
         public static readonly string delivering = "On the way";
         public static readonly string delivered = "Delivered";
+
+        public List<string> statusList = new List<string>()
+        {
+            preparing,
+            baking,
+            delivering,
+            delivered
+        };
     }
 }
