@@ -312,5 +312,31 @@ namespace Project4_KhaledMarijn.Classes
             }
             return result;
         }
+
+        public bool UpdateStatus(int orderId, string status)
+        {
+            bool result = false;
+            using (MySqlConnection conn = new(connString))
+            {
+                try
+                {
+                    conn.Open();
+                    MySqlCommand sql = conn.CreateCommand();
+                    sql.CommandText = @"UPDATE orders SET status = @status WHERE orderId = @orderId ";
+                    sql.Parameters.AddWithValue("@orderId", orderId);
+                    sql.Parameters.AddWithValue("@status", status);
+                    if (sql.ExecuteNonQuery() == 1)
+                        result = true;
+                    else
+                        result = false;
+                }
+                catch (Exception e)
+                {
+                    Console.Error.WriteLine(nameof(DeleteOrder));
+                    Console.Error.WriteLine(e.Message);
+                }
+            }
+            return result;
+        }
     }
 }

@@ -70,6 +70,7 @@ namespace Project4_KhaledMarijn
 
         internal void PopulateOrders()
         {
+            Orders.Clear();
             bool result = db.GetOrders(Orders, User);
             if (!result)
                 MessageBox.Show(serviceDeskMessage);

@@ -227,16 +227,18 @@ namespace Project4_KhaledMarijn
             NewOrder.UserId = NewOrderUser.Id;
             NewOrder.Status = OrderStatus.queue;
             NewOrder.Date = DateTime.Now;
-            var result2 = db.CreateOrder(NewOrder);
-            if (!result2.Item1)
+            var createOrderResult = db.CreateOrder(NewOrder);
+            if (!createOrderResult.Item1)
                 NewOrder = new();
 
-            NewOrder.Id = (int)result2.Item2;
+            NewOrder.Id = (int)createOrderResult.Item2;
 
             foreach (var pizza in OrderPizzas)
             {
-                bool result3 = pizza != null && db.CreateOrder_Pizza(pizza, NewOrder.Id);
+                bool createOrderPizzaResult = pizza != null && db.CreateOrder_Pizza(pizza, NewOrder.Id);
             }
+
+            NewOrder.ChangeStatus(orderWindow);
 
             NewOrder = new();
             SelectedPizza = null;
