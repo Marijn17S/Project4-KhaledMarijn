@@ -48,7 +48,7 @@ namespace Project4_KhaledMarijn.Classes
         }
 
         // Niet af
-        public bool GetOrders(ICollection<Order> orders)
+        public bool GetOrders(ICollection<Order> orders, Customer user)
         {
             bool result;
             if (orders == null)
@@ -59,7 +59,8 @@ namespace Project4_KhaledMarijn.Classes
                 try
                 {
                     conn.Open(); MySqlCommand sql = conn.CreateCommand();
-                    sql.CommandText = @"SELECT o.orderID, o.date, u.userID, o.status, u.firstname firstname, u.lastname lastname, u.address address, u.postalcode postalcode, u.city city FROM orders o INNER JOIN users u ON u.userID = o.userId";
+                    sql.CommandText = @"SELECT o.orderID, o.date, u.userID, o.status, u.firstname firstname, u.lastname lastname, u.address address, u.postalcode postalcode, u.city city FROM orders o INNER JOIN users u ON u.userID = o.userId WHERE o.userId = @userId";
+                    sql.Parameters.AddWithValue("@userId", user.Id);
                     MySqlDataReader reader = sql.ExecuteReader();
                     while (reader.Read())
                     {
@@ -274,6 +275,39 @@ namespace Project4_KhaledMarijn.Classes
                 {
                     Console.Error.WriteLine(nameof(DeleteOrder));
                     Console.Error.WriteLine(e.Message);
+                }
+            }
+            return result;
+        }
+
+        public bool CheckUser(Customer user)
+        {
+            bool result = false;
+            if (user == null)
+                throw new ArgumentException("Ongeldig argument bij gebruik van CheckUser");
+
+            using (MySqlConnection conn = new(connString))
+            {
+                try
+                {
+                    conn.Open(); MySqlCommand sql = conn.CreateCommand();
+                    sql.CommandText = @"SELECT * FROM users WHERE firstname = @firstname AND lastname = @lastname AND address = @address AND postalcode = @postalcode AND city = @city";
+                    sql.Parameters.AddWithValue("@firstname", user.FirstName);
+                    sql.Parameters.AddWithValue("@lastname", user.LastName);
+                    sql.Parameters.AddWithValue("@address", user.Address);
+                    sql.Parameters.AddWithValue("@postalcode", user.PostalCode);
+                    sql.Parameters.AddWithValue("@city", user.City);
+                    MySqlDataReader reader = sql.ExecuteReader();
+                    while (reader.Read())
+                        if ((int) reader["userID"] > 0)
+                        {
+                            user.Id = (int)reader["userID"];
+                            result = true;
+                        }
+                }
+                catch (Exception e)
+                {
+                    Console.Error.WriteLine(nameof(CheckUser)); Console.Error.WriteLine(e.Message);
                 }
             }
             return result;

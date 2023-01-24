@@ -23,11 +23,12 @@ namespace Project4_KhaledMarijn
     /// </summary>
     public partial class OrderWindow : Window
     {
-        public OrderWindow()
+        public OrderWindow(Customer user)
         {
             InitializeComponent();
-            PopulateOrders();
             DataContext= this;
+            User = user;
+            PopulateOrders();
         }
 
 
@@ -44,7 +45,6 @@ namespace Project4_KhaledMarijn
         private readonly string serviceDeskMessage = "\n\nSomething went wrong";
         #endregion
 
-
         #region Properties
         private ObservableCollection<Order> orders = new();
         public ObservableCollection<Order> Orders
@@ -53,6 +53,12 @@ namespace Project4_KhaledMarijn
             set { orders = value; OnPropertyChanged(); }
         }
 
+        private Customer? user = new();
+        public Customer? User
+        {
+            get { return user; }
+            set { user = value; OnPropertyChanged(); }
+        }
 
         private Order? selectedOrder;
         public Order? SelectedOrder
@@ -60,14 +66,12 @@ namespace Project4_KhaledMarijn
             get { return selectedOrder; }
             set { selectedOrder = value; OnPropertyChanged(); }
         }
-
         #endregion
 
-
-        private void PopulateOrders()
+        internal void PopulateOrders()
         {
             Orders.Clear();
-            bool result = db.GetOrders(Orders);
+            bool result = db.GetOrders(Orders, User);
             if (!result)
                 MessageBox.Show(serviceDeskMessage);
         }

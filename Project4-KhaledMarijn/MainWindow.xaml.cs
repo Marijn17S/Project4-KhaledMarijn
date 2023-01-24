@@ -43,7 +43,6 @@ namespace Project4_KhaledMarijn
         #region fields
         private readonly Project4DB db = new Project4DB();
         private readonly string serviceDeskMessage = "\n\nSomething went wrong";
-        OrderWindow orderWindow = new();
         #endregion
 
         #region Properties
@@ -215,13 +214,16 @@ namespace Project4_KhaledMarijn
                 return;
             }
 
+            if (!db.CheckUser(NewOrderUser))
+            {
+                var result = db.CreateUser(NewOrderUser);
+                if (!result.Item1)
+                    NewOrderUser = new();
 
+                NewOrderUser.Id = (int)result.Item2;
+            }
 
-            var result = db.CreateUser(NewOrderUser);
-            if (!result.Item1)
-                NewOrderUser = new();
-
-            NewOrderUser.Id = (int)result.Item2;
+            OrderWindow orderWindow = new(NewOrderUser);
             NewOrder.UserId = NewOrderUser.Id;
             NewOrder.Status = OrderStatus.queue;
             NewOrder.Date = DateTime.Now;
@@ -236,7 +238,7 @@ namespace Project4_KhaledMarijn
                 bool result3 = pizza != null && db.CreateOrder_Pizza(pizza, NewOrder.Id);
             }
 
-            NewOrderUser = new();
+            NewOrder = new();
             SelectedPizza = null;
             Amount = 0;
             SelectedSize = null;
@@ -244,9 +246,6 @@ namespace Project4_KhaledMarijn
             OrderPizzas.Clear();
 
             orderWindow.Show();
-
-           
-            
         }
 
 
@@ -265,6 +264,7 @@ namespace Project4_KhaledMarijn
 
         private void Orders(object sender, RoutedEventArgs e)
         {
+            OrderWindow orderWindow = new(NewOrderUser);
             orderWindow.Show();
         }
     }
