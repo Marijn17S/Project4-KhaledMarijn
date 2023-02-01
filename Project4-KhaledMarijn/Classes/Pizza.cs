@@ -41,6 +41,11 @@ namespace Project4_KhaledMarijn.Classes
             set { price = value; OnPropertyChanged(); }
         }
 
+        public string FormatPrice()
+        {
+            return price.ToString();
+        }
+
         private string? priceLabel;
         public string? PriceLabel
         {
