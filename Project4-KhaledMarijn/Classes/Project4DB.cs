@@ -47,7 +47,6 @@ namespace Project4_KhaledMarijn.Classes
             return true;
         }
 
-        // Niet af
         public bool GetOrders(ICollection<Order> orders, Customer user)
         {
             bool result;
@@ -121,37 +120,7 @@ namespace Project4_KhaledMarijn.Classes
             return true;
         }
 
-        // Medewerkers
-        /*public bool CreatePizza(OrderPizza pizza)
-        {
-            bool result;
-            if (pizza == null || pizza.Price <= 0 || string.IsNullOrEmpty(pizza.Name))
-            {
-                throw new ArgumentException("Ongeldig argument bij gebruik van CreatePizza");
-            }
-            using (MySqlConnection conn = new(connString))
-            {
-                try
-                {
-                    conn.Open();
-                    MySqlCommand sql = conn.CreateCommand();
-                    sql.CommandText = @"INSERT INTO pizzas (name, price) VALUES (@name, @price);";
-                    sql.Parameters.AddWithValue("@name", pizza.Name);
-                    sql.Parameters.AddWithValue("@price", pizza.Price);
-                    if (sql.ExecuteNonQuery() == 1)
-                        result = true;
-                    else
-                        result = false;
-                }
-                catch (Exception e)
-                {
-                    Console.Error.WriteLine(nameof(CreateOrder));
-                    Console.Error.WriteLine(e.Message);
-                    result = false;
-                }
-            }
-            return result;
-        }*/
+  
 
         public (bool, long) CreateUser(Customer user)
         {
@@ -189,13 +158,11 @@ namespace Project4_KhaledMarijn.Classes
             return (result, id);
         }
 
-        // Niet af
         public (bool, long) CreateOrder(Order order)
         {
             bool result;
             long id = 0;
-            //if (order == null || order.UserId <= 0)
-                //throw new ArgumentException("Ongeldig argument bij gebruik van CreateOrder");
+    
             using (MySqlConnection conn = new(connString))
             {
                 try

@@ -35,7 +35,7 @@ namespace Project4_KhaledMarijn.Classes
 
         public string Status { get; set; }
 
-        private int i;
+        private int i = 0;
 
         private OrderWindow orderWindow;
 
