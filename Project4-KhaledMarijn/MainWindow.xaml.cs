@@ -149,15 +149,48 @@ namespace Project4_KhaledMarijn
 
         private void AddOrder(object sender, RoutedEventArgs e)
         {
-            if ((SelectedPizza == null || string.IsNullOrEmpty(SelectedPizza.Name) || Amount <= 0 ||
-                                         SelectedPizza.Price <= 0 || string.IsNullOrEmpty(SelectedPizza.PriceLabel) ||
-                                         SelectedSize == null || SelectedSize.SizeID <= 0)) return;
+
+            if (SelectedPizza == null || string.IsNullOrEmpty(SelectedPizza.Name))
+
+            {
+                MessageBox.Show("Please Select pizza first");
+                return;
+            }
+
+
+            else if (Amount <= 0 || (Amount == null))
+            {
+
+                MessageBox.Show("Please type a valid amount");
+                return;
+            }
+
+
+
+            else if (SelectedSize == null || SelectedSize.SizeID <= 0)
+            {
+                MessageBox.Show("Please select the pizza size");
+                return;
+            }
+
+
+            /* if ((SelectedPizza == null || string.IsNullOrEmpty(SelectedPizza.Name) || Amount <= 0 ||
+                                          SelectedPizza.Price <= 0 || string.IsNullOrEmpty(SelectedPizza.PriceLabel) ||
+                                          SelectedSize == null || SelectedSize.SizeID <= 0)) return; */
+
+
+
+
+
+
 
             decimal price = SelectedPizza.Price;
             if (SelectedSize?.SizeID == 1)
                 price *= (decimal)0.75;
             else if (selectedSize?.SizeID == 3)
                 price *= (decimal)1.25;
+
+           
 
             OrderPizza newPizza = new OrderPizza
             {
@@ -176,11 +209,11 @@ namespace Project4_KhaledMarijn
             SelectedPizza = null;
             Amount = 0;
             SelectedSize = null;
+
         }
 
         private void ConfirmPayment(object sender, RoutedEventArgs e)
         {
-            //var regex = new Regex("/^[1-9][0-9]{3}[\\s]?[A-Za-z]{2}$/i");
             if (string.IsNullOrEmpty(NewOrderUser?.FirstName))
             {
                 MessageBox.Show("Enter a valid firstname!");
@@ -196,13 +229,13 @@ namespace Project4_KhaledMarijn
                 MessageBox.Show("Enter a valid address!");
                 return;
             }
-            if (string.IsNullOrEmpty(NewOrderUser?.PostalCode) /*|| !regex.IsMatch(NewOrderUser.PostalCode)*/)
+            if (string.IsNullOrEmpty(NewOrderUser?.PostalCode))
             {
                 MessageBox.Show("Enter a valid postal code!");
                 return;
             }
 
-            if (string.IsNullOrEmpty(NewOrderUser?.City) /* && Regex match 4 cijfers 2 letters postcode*/)
+            if (string.IsNullOrEmpty(NewOrderUser?.City))
             {
                 MessageBox.Show("Enter a valid city!");
                 return;

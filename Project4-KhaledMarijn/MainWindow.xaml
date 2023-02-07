@@ -106,7 +106,7 @@
                         <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" Text="Amount (Max 99):" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <TextBox Text="{Binding Amount}" Grid.Column="1" HorizontalAlignment="Left" MaxLength="2" MinWidth="35" VerticalAlignment="Center" HorizontalContentAlignment="Center"/>
+                    <TextBox x:Name="tbAmount" Text="{Binding Amount}" Grid.Column="1" HorizontalAlignment="Left" MaxLength="2" MinWidth="35" VerticalAlignment="Center" HorizontalContentAlignment="Center"/>
                 </Grid>
 
                 <Grid Grid.Row="6">
